@@ -1,0 +1,32 @@
+\chapter{Background}
+\label{ch:background}
+
+This chapter covers basic definitions that are not part of the own approach but that are necessary for the reader to understand the approach presented in the next chapter. A classic example is that terms like ``knowledge graph'' are defined within this chapter.
+
+Since this is a thesis in computer science, we should also have some math. So let's briefly describe how the \gls{pmi} and \gls{npmi} work~\cite{bouma2009}. Let $\s{randVar1}$ and $\s{randVar2}$ be two random variables. Their values have the marginal probabilities $\s{probability}(\s{randValue1})$ and $\s{probability}(\s{randValue2})$, and the joint probability $\s{probability}(\s{randValue1},\s{randValue2})$. The \gls{pmi} is defined as the logarithm of the ratio between the measured joint probability of two random values and the joint probability they should have under the assumption that they are independent~\cite{bouma2009}, i.e.,:
+
+\begin{equation}
+\label{eq:pmi}
+\s{pmiMath}(\s{randValue1},\s{randValue2}) = \log\left(\frac{\s{probability}(\s{randValue1},\s{randValue2})}{\s{probability}(\s{randValue1})\s{probability}(\s{randValue2})}\right)\,.
+\end{equation}
+
+The codomain of the \gls{pmi} measure is $[-\infty,\infty]$. If the independence assumption between $\s{randVar1}$ and $\s{randVar2}$ holds, the \gls{pmi} measure has the result $0$. If the measure returns a positive result, the two values cooccur more often than by chance. A negative value indicates that the values occur less often together than by chance. 
+
+If the probabilities are based on counts that are retrieved from some reference data, a small value $\s{avoidZeroLog}$ can be added to the nominator to avoid the calculation of the logarithm of 0~\cite{stevens2012}. Within this thesis, we will mark this variant as $\s{pmiMathE}$, which is defined as:
+
+\begin{equation}
+\label{eq:pmi-e}
+\s{pmiMathE}(\s{randValue1},\s{randValue2}) = \log\left(\frac{\s{probability}(\s{randValue1},\s{randValue2})+\s{avoidZeroLog}}{\s{probability}(\s{randValue1})\s{probability}(\s{randValue2})}\right)\,.
+\end{equation}
+
+Bouma~\cite{bouma2009} suggests a normalized variant of this measure---the \gls{npmi}. It is defined as follows:
+
+\begin{equation}
+\label{eq:npmi}
+\s{npmiMath}(\s{randValue1},\s{randValue2}) = \frac{\s{pmiMath}(\s{randValue1},\s{randValue2})}{-\log (\s{probability}(\s{randValue1},\s{randValue2}))} = \frac{ \log\left(\frac{\s{probability}(\s{randValue1},\s{randValue2})}{\s{probability}(\s{randValue1})\s{probability}(\s{randValue2})}\right) }{-\log (\s{probability}(\s{randValue1},\s{randValue2}))}\,.
+\end{equation}
+As the \gls{pmi}, the \gls{npmi} measure returns a 0 in case the values $\s{randValue1}$ and $\s{randValue2}$ are independent of each other. However, its maximum value is 1 while its minimum value is -1, which allows an easier interpretability of the result~\cite{bouma2009}. Similar to $\s{pmiMathE}$, the variant $\s{npmiMathE}$ uses a small constant $\s{avoidZeroLog}$ to avoid the logarithm of 0 and is defined as:
+\begin{equation}
+\label{eq:npmi-e}
+\s{npmiMathE}(\s{randValue1},\s{randValue2}) = \frac{\s{pmiMathE}(\s{randValue1},\s{randValue2})}{-\log (\s{probability}(\s{randValue1},\s{randValue2}) + \s{avoidZeroLog})} =  \frac{ \log\left(\frac{\s{probability}(\s{randValue1},\s{randValue2})+\s{avoidZeroLog}}{\s{probability}(\s{randValue1})\s{probability}(\s{randValue2})}\right)}{-\log (\s{probability}(\s{randValue1},\s{randValue2}) + \s{avoidZeroLog})}\,.
+\end{equation}

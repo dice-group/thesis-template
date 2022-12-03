@@ -1,0 +1,113 @@
+% **************************************************
+% Document Class Definition (Clean thesis template)
+% **************************************************
+\documentclass[%
+    paper=A4,               % paper size --> A4 is default in Germany
+    twoside=true,           % onesite or twoside printing
+    openright,              % doublepage cleaning ends up right side
+    parskip=half,           % spacing value / method for paragraphs
+    chapterprefix=true,     % prefix for chapter marks
+    11pt,                   % font size
+    headings=normal,        % size of headings
+    bibliography=totoc,     % include bib in toc
+    listof=nottotoc,        % don't include listof entries in toc
+    titlepage=on,           % own page for each title page
+    captions=tableabove,    % display table captions above the float env
+    chapterprefix=false,    % do not display a prefix for chapters
+    appendixprefix=false,   % but display a prefix for appendix chapter
+    draft=false,            % value for draft version
+]{scrreprt}
+
+% Clean thesis setup
+\input{setup}
+
+% Definitions of additional commands
+\input{commands}
+
+% Glossaries setup
+\input{glossaries-setup}
+
+
+% set up some resources (graphics and bibliography)
+\graphicspath{{figures/}}
+
+% **************************************************
+% Document start
+% **************************************************
+\begin{document}
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}% roman page numbing (invisible for empty page style)
+%\pagestyle{empty}	% no header or footers
+% start with the titlepage, the formalities, and then the abstract
+\input{pretext/titlepages} % prints the title page % <- Clean thesis
+%\cleardoublepage
+\pagestyle{plain}	% display just page numbers
+%\input{pretext/erklaerung} % prints the statement that you worked on your own and did not commit plagiarism
+
+\input{abstract}
+\addpageifneeded
+
+% List of publications (only for PhD thesis)
+\input{pretext/papers}
+\addpageifneeded
+
+% Acknowledgments (optional)
+\input{pretext/acknowledgments}
+\addpageifneeded
+
+%\listoftodos % temporary list; will be removed
+%\addpageifneeded
+
+\setcounter{tocdepth}{2}% define depth of toc
+\tableofcontents		% display table of contents
+\addpageifneeded
+
+\listoffigures		    % display list of figure. Remove it if you do not have any figures.
+\addpageifneeded
+
+\listoftables			% display list of tables. Remove it if you do not have any tables.
+\addpageifneeded
+
+\listofalgorithms		% display list of algorithms. Remove it if you do not make use of the algorithm environment.
+\addpageifneeded
+
+\lstlistoflistings		% display list of listings. Remove it if you do not make use of the listings environment.
+\addpageifneeded
+% --------------------------
+% Thesis body
+% --------------------------
+\pagenumbering{arabic}          % arabic page numbering; resets the page count
+\pagestyle{scrheadings}			% header and footer style
+
+\input{chapters/introduction}
+\addpageifneeded
+\input{chapters/related-work}
+\addpageifneeded
+\input{chapters/background}
+\addpageifneeded
+\input{chapters/approach}
+\addpageifneeded
+\input{chapters/implementation}
+\addpageifneeded
+\input{chapters/evaluation}
+\addpageifneeded
+\input{chapters/summary}
+\addpageifneeded
+
+% --------------------------
+% Thesis appendices
+% --------------------------
+
+% include the bibliography
+\bibliographystyle{plainnat}
+\bibliography{literature}
+\addpageifneeded
+
+\input{glossaries}
+
+\appendix
+\input{chapters/appendix}
+
+\end{document}

@@ -1,0 +1,174 @@
+%%%%%%%%%
+% General setup
+%%%%%%%%%
+
+% increase size of the page list in the glossary tables
+\setlength{\glspagelistwidth}{0.2\linewidth}
+
+% Should a glossary for RDF namespaces be created?
+% This is suggested for theses that make use of IRIs.
+\newcounter{useRDFNSGlossary}
+\setcounter{useRDFNSGlossary}{1}
+
+% Should a glossary for (formal) symbols be created?
+% This is suggested for long, complex theses (like a PhD thesis).
+% It might be too much for a master thesis
+\newcounter{useSymbolsGlossary}
+\setcounter{useSymbolsGlossary}{1}
+
+%%%%%%%%%
+% Acronyms
+%%%%%%%%%
+
+% Add more acronyms if needed
+
+\newabbreviation{dns}{DNS}{Domain Name Service}
+\newabbreviation{html}{HTML}{Hyper Text Markup Language}
+\newabbreviation{http}{HTTP}{Hypertext Transfer Protocol}
+\newabbreviation{https}{HTTPS}{Hyper Text Transfer Protocol Secure}
+\newabbreviation{ip}{IP}{Internet Protocol}
+\newabbreviation{iri}{IRI}{Internationalized Resource Identifier}
+\newabbreviation{json-ld}{JSON-LD}{JavaScript Object Notation for Linked Data}
+\newabbreviation{npmi}{NPMI}{Normalized Pointwise Mutual Information}
+\newabbreviation{owl}{OWL}{Web Ontology Language}
+\newabbreviation{pmi}{PMI}{Pointwise Mutual Information}
+\newabbreviation{rdf}{RDF}{Resource Description Framework}
+\newabbreviation{rdfa}{RDFa}{Resource Description Framework in Attributes}
+\newabbreviation{rdfs}{RDFS}{Resource Description Framework Schema}
+\newabbreviation{sparql}{SPARQL}{SPARQL Protocol And RDF Query Language}
+\newabbreviation{url}{URL}{Uniform Resource Locator}
+\newabbreviation{uri}{URI}{Uniform Resource Identifier}
+\newabbreviation{urn}{URN}{Uniform Resource Name}
+\newabbreviation{w3c}{W3C}{World Wide Web Consortium}
+\newabbreviation{xml}{XML}{Extensible Markup Language}
+\newabbreviation{xsd}{XSD}{XML Schema Datatypes}
+
+%%%%%%%%%
+% RDF namespaces
+%%%%%%%%%
+
+% Check whether an RDF namespace glossary is needed
+\ifthenelse{\value{useRDFNSGlossary}>0}{
+
+% Define RDF namespace glossary
+\newglossary*{namespaces}{RDF Namespaces}
+% Define a command for easy definition of RDF namespaces
+\newcommand*{\newRDFNS}[2]{
+% Define glossary entry by adding "ns" at the end
+% (important to avoid collisions with other glossaries)
+\newglossaryentry{{#1}ns} {
+  type={namespaces},
+  name={\texttt{#1}},
+  description={\url{#2}},
+  sort={#1}
+}
+}
+% Define the \iri{} command for an easy usage of namespaces
+\newcommand*{\iri}[2]{
+\ifx&#2& % #2 is empty; simply print the prefix
+\texttt{\gls{{#1}ns}}
+\else    % else, print the prefixed IRI
+\texttt{\gls{{#1}ns}:#2}
+\fi
+}
+
+% Define additional RDF namespaces below this line if needed
+
+\newRDFNS{owl}{http://www.w3.org/2002/07/owl\#}
+\newRDFNS{rdf}{http://www.w3.org/1999/02/22-rdf-syntax-ns\#}
+\newRDFNS{rdfs}{http://www.w3.org/2000/01/rdf-schema\#}
+\newRDFNS{xsd}{http://www.w3.org/2001/XMLSchema\#}
+
+}{
+% no RDF Namespaces, so nothing to do
+}
+
+
+%%%%%%%%%
+% Math symbols
+% (follows the idea at https://tex.stackexchange.com/questions/137418/how-to-create-a-list-of-symbols-where-symbols-can-be-used-in-math-mode
+%%%%%%%%%
+
+% Check whether an RDF namespace glossary is needed
+\ifthenelse{\value{useRDFNSGlossary}>0}{
+
+% From here on, all glossary entities are handled as symbols.
+% This makes the definition of them easier.
+\renewcommand{\glsdefaulttype}{symbols}
+
+% For using symbols within equations 
+% (symbols are defined further below)
+\newcommand*{\s}[1]{\ensuremath{\gls*{#1}}}
+
+% Sorting (just a suggestion, any other order is fine as well)
+% operators: 0
+% others:    1
+% greek:     3
+% latin:     4
+% within the name
+% lowercase: 1
+% uppercase: 2
+
+% Example symbols (feel free to remove them)
+\newglossaryentry{avoidZeroLog} {
+  name={\ensuremath{\epsilon}},
+  description={A small constant that is added to avoid the calculation of the logarithm of 0},
+  sort={3epsilon1avoidzerolog}
+}
+\newglossaryentry{randVar1} {
+  name={\ensuremath{\mathcal{X}}},
+  description={A random variable},
+  sort={4x2rand}
+}
+\newglossaryentry{randValue1} {
+  name={\ensuremath{x}},
+  description={A random value of \gls{randVar1}},
+  sort={4x1rand}
+}
+\newglossaryentry{randVar2} {
+  name={\ensuremath{\mathcal{Y}}},
+  description={A random variable},
+  sort={4y2rand}
+}
+\newglossaryentry{randValue2} {
+  name={\ensuremath{y}},
+  description={A random value of \gls{randVar2}},
+  sort={4y1rand}
+}
+\newglossaryentry{pmiMath} {
+  name={\ensuremath{\text{PMI}}},
+  description={The pointwise mutual information measure as defined in Equation~\ref{eq:pmi}},
+  sort={4p2PMI}
+}
+\newglossaryentry{pmiMathE} {
+  name={\ensuremath{\text{PMI}_\epsilon}},
+  description={The pointwise mutual information measure for probabilities based on counts as defined in Equation~\ref{eq:pmi-e}},
+  sort={4p2PMIe}
+}
+\newglossaryentry{npmiMath} {
+  name={\ensuremath{\text{NPMI}}},
+  description={The normalized pointwise mutual information measure as defined in Equation~\ref{eq:npmi}},
+  sort={4n2NPMI}
+}
+\newglossaryentry{npmiMathE} {
+  name={\ensuremath{\text{NPMI}_\epsilon}},
+  description={The normalized pointwise mutual information measure for probabilities based on counts as defined in Equation~\ref{eq:npmi-e}},
+  sort={4n2NPMIe}
+}
+\newglossaryentry{probability} {
+  name={\ensuremath{\mathbb{P}}},
+  description={A probability},
+  sort={4p2prob}
+}
+
+% Add additional symbol definition here
+
+
+}{
+% No glossary for formal symbols, so nothing to do
+}
+
+
+
+% Necessary command to prepare glossary definition
+\makeglossaries

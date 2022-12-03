@@ -1,0 +1,160 @@
+% **************************************************
+% Files' Character Encoding
+% **************************************************
+%\PassOptionsToPackage{utf8}{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[main=english]{babel} % babel system, adjust the language of the content
+
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{Amazing Thesis Title} % The title of the thesis
+\newcommand{\thesisName}{Max Power} % The name of the author
+\newcommand{\thesisType}{Bachelor Thesis}% "Bachelor Thesis", "Master Thesis", or "Doctoral Dissertation"
+\newcommand{\thesisTypeShort}{Thesis}% "Thesis" for a Bachelor or Master thesis, or "Dissertation" for a PhD thesis.
+\newcommand{\thesisDegree}{Bachelor of Science} % "Bachelor of Science", "Master of Science", or the PhD degree, e.g., "Dr.rer.nat."
+\newcommand{\thesisDate}{01.01.1970} % date of submission
+\newcommand{\thesisVersion}{Template (0.0.0)} % Version (typically, the submission is version 1.0.0; but it is up to you
+
+% Add your first reviewer (in the DICE group, this is typically Prof. Ngonga
+\newcommand{\thesisFirstReviewer}{Prof. Dr. Axel-Cyrille Ngonga Ngomo}
+\newcommand{\thesisFirstReviewerUniversity}{\protect{Paderborn University}}
+\newcommand{\thesisFirstReviewerDepartment}{Department of Computer Science}
+
+% Add your second reviewer
+\newcommand{\thesisSecondReviewer}{Prof. Dr. Second Examiner}
+\newcommand{\thesisSecondReviewerUniversity}{Clean Thesis Style University}
+\newcommand{\thesisSecondReviewerDepartment}{Department of Computer Science}
+
+% Who supervised your work? Typically, it is Prof. Ngonga and somebody from his team
+\newcommand{\thesisFirstSupervisor}{Prof. Dr. Axel-Cyrille Ngonga Ngomo}
+\newcommand{\thesisSecondSupervisor}{Dr. Amazing Researcher} % Please add here the name of your second supervisor
+
+% The last values are standard values and should hold for theses written with the DICE group
+\newcommand{\thesisUniversity}{\protect{Paderborn University}}
+\newcommand{\thesisUniversityDepartment}{Faculty of Computer Science, Electrical Engineering and Mathematics}
+\newcommand{\thesisUniversityInstitute}{Department of Computer Science}
+\newcommand{\thesisUniversityGroup}{Data Science Group (DICE)}
+\newcommand{\thesisUniversityCity}{Paderborn}
+\newcommand{\thesisUniversityStreetAddress}{Warburger Str. 100}
+\newcommand{\thesisUniversityPostalCode}{33098}
+
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+%%% Start with packages that we want to configure and that would be loaded by the cleanthesis package without any configuration 
+% Compact list / enumerate format
+\usepackage[inline]{enumitem}
+\setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setenumerate{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+%%% Load cleanthesis package
+\PassOptionsToPackage{% setup clean thesis style
+    figuresep=colon,%
+    hangfigurecaption=false,%
+    hangsection=false,%
+    hangsubsection=false,%
+    sansserif=false,%
+    configurelistings=true,%
+    colorize=full,%
+    colortheme=bluemagenta,%
+    configurebiblatex=false
+}{cleanthesis}
+\usepackage{cleanthesis}
+
+\hypersetup{% setup the hyperref-package options
+    pdftitle={\thesisTitle},    %   - title (PDF meta)
+    pdfsubject={\thesisType},   %   - subject (PDF meta)
+    pdfauthor={\thesisName},    %   - author (PDF meta)
+    plainpages=false,           %   -
+    colorlinks=false,           %   - colorize links?
+    pdfborder={0 0 0},          %   -
+    breaklinks=true,            %   - allow line break inside links
+    bookmarksnumbered=true,     %
+    bookmarksopen=true          %
+}
+
+%%% Load other packages
+\usepackage{amsmath, amssymb, amsfonts}% mathematical symbols and the like
+\usepackage{mathrsfs} %mathscr font
+\usepackage{amsthm}% definitions, theorems, etc.
+\usepackage[colorinlistoftodos,disable]{todonotes}% marking open todos in text/on margins
+\usepackage{subfig}% multi-part figures with separate captions per part
+\usepackage{url}% render URLs correctly and make them clickable through the hyperref package
+\usepackage{longtable}% tables that span multiple pages
+\usepackage{booktabs}% tables that actually look good
+%\usepackage[nolist]{acronym}% consistently use acronyms
+\RequirePackage{comment}
+\usepackage[nottoc,notlot,notlof]{tocbibind} %Not recommended for KOMA script % Adds lists of figures, tables, ..., algorithms to the toc. Should be loaded before algorithm2e
+\usepackage[linesnumbered,ruled,vlined,algochapter]{algorithm2e} % dotocloa would add an entry to the ToC
+\usepackage{multirow}
+\usepackage{hyperref}
+%\usepackage[order=letter,acronym,symbols,nomain]{glossaries}
+\usepackage[automake,order=letter,acronym,symbols,postdot,nomain,stylemods]{glossaries-extra} % already contains the glossaries package
+\usepackage{glossary-longbooktabs}
+\usepackage{listings}
+\usepackage{rotating}
+\usepackage{ifthen} % for if else constructs
+
+\usepackage{footnote}
+\usepackage{footmisc}
+
+\usepackage[sort,square,numbers]{natbib}% more bibliography options
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{bayesnet}
+\usetikzlibrary{arrows}
+\usetikzlibrary{graphs}
+\usetikzlibrary{positioning,calc}
+\usetikzlibrary{decorations.pathreplacing}
+
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.markings}
+\usepgfplotslibrary{statistics} % boxplots
+
+
+\usepackage{lscape} % landscape pages
+\usepackage{afterpage} % handling floating-like behavior of landscape pages
+
+\usepackage{float}
+\usepackage{placeins} % Placeins.sty keeps floats ‘in their place’, preventing them from floating past a “\FloatBarrier” command into another section. To use it, declare “\usepackage{placeins}” and insert “\FloatBarrier” at places that floats should not move past, perhaps at every “\section”
+
+% Chapter counters should be resetted if we change the part counter
+%\usepackage{chngcntr}
+%\counterwithin*{chapter}{part}
+
+%%%%%%%%%
+% Some commands for setting up theorem environments as provided by package 
+% amsthm --- language sensitive
+%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{lemma}[definition]{Lemma}
+%\ifgerman
+%	\newtheorem{theorem}[definition]{Satz}
+%	\newtheorem{corollary}[definition]{Korollar}
+%	\newtheorem{example}[definition]{Beispiel}
+%\else
+	\newtheorem{theorem}[definition]{Theorem}
+	\newtheorem{corollary}[definition]{Corollary}
+	\newtheorem{example}[definition]{Example}
+%\fi
+
+%%%%%%%%
+% Further template commands
+%%%%%%%%
+% Command to handle header and footer of empty pages
+\newcommand*{\addpageifneeded}{\Ifthispageodd{\newpage $\quad$ \cleardoubleoddpage}{\clearpage}}

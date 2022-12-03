@@ -1,0 +1,94 @@
+% !TEX root = ../my-thesis.tex
+%
+% ------------------------------------  --> cover title page
+\begin{titlepage}
+	\pdfbookmark[0]{Cover}{Cover}
+	\flushright
+	\hfill
+	\vfill
+	{\LARGE\thesisTitle \par}
+	\rule[5pt]{\textwidth}{.4pt} \par
+	{\Large\thesisName}
+	\vfill
+	\textit{\large\thesisDate} \\
+	Version: \thesisVersion
+\end{titlepage}
+
+
+% ------------------------------------  --> main title page
+\begin{titlepage}
+	\pdfbookmark[0]{Titlepage}{Titlepage}
+	\tgherosfont
+	\centering
+
+	%{\Large \thesisUniversity} \\[4mm] % Not necessary since the logo itself already contains the name
+	\includegraphics[width=8cm]{figures/UPB_LOGO_KOMP_CMYK_GB_2015} \\[2mm]
+%\textsf{\thesisUniversityDepartment} \\
+	\textsf{\thesisUniversityInstitute} \\
+	\textsf{\thesisUniversityGroup} \\
+
+	\vfill
+	{\large \thesisType} \\[5mm]
+	{\LARGE \color{ctcolortitle}\textbf{\thesisTitle} \\[10mm]}
+	\textsf{A \thesisTypeShort{} presented by}\\[5mm]
+	{\Large \thesisName} \\[5mm]
+	\textsf{to the}\\
+	{\large\thesisUniversityDepartment} \\
+	\textsf{of}\\
+	{\large\thesisUniversity}\\
+	\textsf{in partial fulfillment of the requirements
+for the degree of}\\
+	{\large \thesisDegree} \\
+
+	\vfill
+	\begin{minipage}[t]{.27\textwidth}
+		\raggedleft
+		\textit{1. Reviewer}
+	\end{minipage}
+	\hspace*{15pt}
+	\begin{minipage}[t]{.65\textwidth}
+		{\Large \thesisFirstReviewer} \\
+	  	{\small \thesisFirstReviewerDepartment} \\[-1mm]
+		{\small \thesisFirstReviewerUniversity}
+	\end{minipage} \\[5mm]
+	\begin{minipage}[t]{.27\textwidth}
+		\raggedleft
+		\textit{2. Reviewer}
+	\end{minipage}
+	\hspace*{15pt}
+	\begin{minipage}[t]{.65\textwidth}
+		{\Large \thesisSecondReviewer} \\
+	  	{\small \thesisSecondReviewerDepartment} \\[-1mm]
+		{\small \thesisSecondReviewerUniversity}
+	\end{minipage} \\[10mm]
+	\begin{minipage}[t]{.27\textwidth}
+		\raggedleft
+		\textit{Supervisors} %Supervisors
+	\end{minipage}
+	\hspace*{15pt}
+	\begin{minipage}[t]{.65\textwidth}
+		\thesisFirstSupervisor\ and\\ \thesisSecondSupervisor
+	\end{minipage} \\[10mm]
+
+	\thesisDate \\
+
+\end{titlepage}
+
+
+% ------------------------------------  --> lower title back for single page layout
+\hfill
+\vfill
+{
+	\small
+	\textbf{\thesisName} \\
+	\textit{\thesisTitle} \\
+	\thesisType, \thesisDate \\
+    Reviewers: \thesisFirstReviewer\ and \thesisSecondReviewer \\
+	Supervisors: \thesisFirstSupervisor\ and \thesisSecondSupervisor \\[1.5em]
+	\textbf{\thesisUniversity} \\
+	\textit{\thesisUniversityGroup} \\
+	\thesisUniversityInstitute \\
+	\thesisUniversityDepartment \\
+	\thesisUniversityStreetAddress \\
+	\thesisUniversityPostalCode\ and \thesisUniversityCity
+}

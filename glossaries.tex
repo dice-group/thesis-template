@@ -1,0 +1,36 @@
+% **************************************************
+% Glossaries
+% **************************************************
+% This file contains glossaries. It can be used to 
+% configure their appearance. However, their content
+% is defined in other files.
+
+% --------------------------
+% Abbreviations
+% --------------------------
+\printglossary[type=acronym,style=long3col-booktabs,title={List of Abbreviations}]
+\makeatletter
+\def\@currentlabelname{\@glotype@foo@title}
+\label{glo:abbreviations}
+\makeatother
+\addpageifneeded
+
+% --------------------------
+% RDF Namespaces
+% --------------------------
+\printglossary[type=namespaces,style=long3col-booktabs,title={List of RDF Namespaces}]
+\makeatletter
+\def\@currentlabelname{\@glotype@foo@title}
+\label{glo:namespaces}
+\makeatother
+\addpageifneeded
+
+% --------------------------
+% Formal symbols
+% --------------------------
+\printglossary[type=symbols,style=long3col-booktabs,title={List of Symbols}]
+\makeatletter
+\def\@currentlabelname{\@glotype@foo@title}
+\label{glo:symbols}
+\makeatother
+\addpageifneeded
